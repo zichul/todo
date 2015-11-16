@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :lists
+  resources :lists
+  resources :lists
   get 'account' => 'users#show'
   post 'account' => 'users#create', as: 'users'
   get 'account/edit' => 'users#edit'

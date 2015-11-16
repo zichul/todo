@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Authentication
 gem 'sorcery'
 
+#Secure tokens
+gem 'has_secure_token'
 # Frontend
 
 gem 'bootstrap-sass'
