@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Todo
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          %nav.navbar.navbar-default
+            .container-fluid
+              .navbar-header
+                .navbar-brand= link_to "Todo", root_path
+              %ul.nav.navbar-nav.navbar-right
+                - if logged_in?
+                  %li= link_to current_user.email, account_path
+                  %li= link_to t(:logout), logout_path
+                - else
+                  %li= link_to t(:registation), registration_path
+                  %li= link_to t(:login), login_path
+          - flash.each do |type, message|
+            %div{:class => "flash bg-#{bootstrap_class_for(type)}"}
+              %h4= message
+          = yield
