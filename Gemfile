@@ -32,8 +32,9 @@ gem "haml-rails"
 # gem 'bcrypt', '~> 3.1.7'
 
 # Puma Server
-gem "puma"
+ gem "puma"
 
+gem 'socky-authenticator', '~> 0.5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -54,7 +55,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
 
-  gem 'guard-livereload'
+  gem 'guard-livereload', '~> 2.5.1'
   gem 'guard-rspec'
   gem 'guard-puma'
 end
