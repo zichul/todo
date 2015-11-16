@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
     if login(params[:email], params[:password], params[:remember_me])
       redirect_back_or_to root_url, notice: I18n.t(:login_successful)
     else
-      flash.now.alert = I18n.t(:login_failed)
-      render action: :new
+      render action: :new, notice: I18n.t(:login_failed)
     end
   end
 

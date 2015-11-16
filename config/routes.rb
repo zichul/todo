@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'account' => 'users#show'
-  post 'account' => 'users#create'
+  post 'account' => 'users#create', as: 'users'
   get 'account/edit' => 'users#edit'
   post 'account/edit' => 'users#update'
   delete 'account/delete' => 'users#destroy'
@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   get 'register' => 'users#new', as: 'registration'
 
-  root to: 'session#new'
+  root to: 'sessions#new'
 
 end
