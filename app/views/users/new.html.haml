@@ -1,0 +1,22 @@
+%h1 Registration
+= form_for @user do |f|
+  - if @author.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@author.errors.count, "error")} prohibited this author from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .row
+    .col-md-6
+      .form-group
+        = f.label :email
+        = f.email_field :email, class: "form-control"
+      .form-group
+        = f.label :password
+        = f.password_field :password, class: "form-control"
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, class: "form-control"
+      .form-group
+        = f.submit class: "form-control"
