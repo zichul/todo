@@ -99,7 +99,7 @@ class ListsController < ApplicationController
     end
 
     def update_socky
-      $socky_client = Socky::Client.new('http://localhost:3001/http/todo', 'randomstring')
+      $socky_client = Socky::Client.new('http://pacific-mesa-9385.herokuapp.com:35467/http/todo', 'randomstring')
       channel = 'presence-' + @list.token[0..5]
       $socky_client.trigger!("reload", :channel => channel, :data => '')
     end
