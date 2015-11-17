@@ -72,4 +72,4 @@ group :development, :test do
   gem 'guard-puma'
 end
 
-ruby "2.3.0"
+ruby "2.2.0"
