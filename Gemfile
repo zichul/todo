@@ -36,10 +36,12 @@ gem 'has_secure_token'
 gem "puma"
 
 #Sqlite
-gem 'sqlite3'
+gem 'pg'
+gem 'rails_12factor', group: :production
 
 gem 'socky-authenticator', '~> 0.5.0'
 gem 'socky-client', '~> 0.5.0'
+gem "socky-server", "0.5.0"
 
 group :development, :test do
   # Debugger
