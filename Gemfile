@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.2.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -36,14 +37,16 @@ gem "haml-rails"
 # gem 'bcrypt', '~> 3.1.7'
 
 # Puma Server
- gem "puma"
+gem "puma"
+
+#Postgresql
+gem 'pg'
 
 gem 'socky-authenticator', '~> 0.5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 #
-group :development, :test do
-  gem 'pg'
+group :production do
   gem 'rails_12factor'
 end
 
@@ -51,8 +54,6 @@ group :development, :test do
   # Debugger
   gem 'byebug'
 
-# Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -72,4 +73,3 @@ group :development, :test do
   gem 'guard-puma'
 end
 
-ruby "2.2.0"
