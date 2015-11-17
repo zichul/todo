@@ -6,6 +6,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = javascript_include_tag 'http://js.socky.org/v0.5.0-beta1/socky.min.js'
+    = yield :head
   %body
     .container
       .row

@@ -1,10 +1,9 @@
-
 require 'socky/server'
 
 options = {
   :debug => true,
   :applications => {
-    :todo => 'todo-rails',
+    :todo => 'randomstring',
   }
 }
 

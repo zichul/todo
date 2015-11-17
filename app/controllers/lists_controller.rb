@@ -1,6 +1,9 @@
+require 'socky/client'
+
 class ListsController < ApplicationController
   before_filter :require_login, except: [:shared]
   before_action :set_list, only: [:show, :reset_token, :edit, :update, :destroy]
+  after_action :update_socky, only: [:reset_token, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
@@ -93,6 +96,12 @@ class ListsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_list
       @list = current_user.lists.find(params[:id])
+    end
+
+    def update_socky
+      $socky_client = Socky::Client.new('http://localhost:3001/http/todo', 'randomstring')
+      channel = 'presence-' + @list.token[0..5]
+      $socky_client.trigger!("reload", :channel => channel, :data => '')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

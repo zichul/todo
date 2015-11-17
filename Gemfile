@@ -4,7 +4,9 @@ ruby "2.2.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
-
+# Frontend
+gem 'bootstrap-sass'
+gem "haml-rails"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -13,7 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -28,27 +31,15 @@ gem 'sorcery'
 
 #Secure tokens
 gem 'has_secure_token'
-# Frontend
-
-gem 'bootstrap-sass'
-gem "haml-rails"
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Puma Server
 gem "puma"
 
-#Postgresql
-gem 'pg'
+#Sqlite
+gem 'sqlite3'
 
 gem 'socky-authenticator', '~> 0.5.0'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-#
-group :production do
-  gem 'rails_12factor'
-end
+gem 'socky-client', '~> 0.5.0'
 
 group :development, :test do
   # Debugger

@@ -1,6 +1,7 @@
 class TodosController < ApplicationController
   before_filter :require_login
   before_action :set_todo, only: [:toggle, :edit, :update, :destroy]
+  after_action :update_socky, only: [:create, :toggle, :update, :destroy]
 
   def toggle
     @todo.toggle_check
@@ -19,7 +20,13 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(todo_params)
-    @todo.list = List.find(params[:todo][:list_id])
+    if params[:todo][:list_id].present?
+      @todo.list = List.find(params[:todo][:list_id])
+    elsif params[:todo][:list].present?
+      @todo.list = List.find(params[:todo][:list].to_i)
+    else
+      redirect_to root_path, notice: 'Error while adding new todo.'
+    end
 
     respond_to do |format|
       if @todo.save
@@ -61,6 +68,12 @@ class TodosController < ApplicationController
     def set_todo
       @todo = Todo.find(params[:id])
       redirect_to login_path unless @todo.list.user == current_user
+    end
+
+    def update_socky
+      $socky_client = Socky::Client.new('http://localhost:3001/http/todo', 'randomstring')
+      channel = 'presence-' + @todo.list.token[0..5]
+      $socky_client.trigger!("reload", :channel => channel, :data => '')
     end
 
     # Never trust parameters from the scary internet, only allow the white todo through.

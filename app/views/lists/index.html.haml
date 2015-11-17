@@ -1,10 +1,10 @@
-%h1 Listing lists
+%h1 Todo Lists
 
 %ul.list-group
   - @lists.each do |list|
     %li.list-group-item
-      %span.badge(style='margin-left: 20px')= list.todos.count
-      = list.title
+      %span.badge(style='margin-left: 20px; line-height: 2er')= list.todos.count
+      %strong=list.title
       
       .pull-right
         %a.btn.btn-default.btn-sm(href='#{list_path(list)}') Show

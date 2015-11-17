@@ -1,2 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.list-group-item, .span {
+  line-height: 2em;
+}
