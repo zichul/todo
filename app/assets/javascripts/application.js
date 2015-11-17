@@ -14,7 +14,10 @@ function runAutoRefresh(token) {
   // { write:true } option will allow sending messages directly to server
   //   note: this will require enabling this in authenticator
   // { data: { login: username } } all 'data' options are passed to other users
-  var channel = socky.subscribe("presence-chat-channel", { write: true , data: { } });
+
+  // TODO: too long strings won't work
+  var channelString = "presence-".concat(token.substring(0, 6));
+  var channel = socky.subscribe(channelString, { write: true , data: { } });
  
   // Bind message after successfull joining channel
   channel.bind("socky:subscribe:success", function(members) {
@@ -32,8 +35,8 @@ function updateAutoRefresh(token) {
   // Connect to Socky Server
   var socky = new Socky.Client('ws://localhost:3001/websocket/todo');
 
-  var csfr = $('meta[name="csrf-token"]')[0].content
-  var channel = socky.subscribe("presence-chat-channel", { write: true , data: { } });
+  var channelString = "presence-".concat(token.substring(0, 6));
+  var channel = socky.subscribe(channelString, { write: true , data: { } });
   
   channel.bind("socky:subscribe:success", function(members) {
     console.log("Joined channel");
