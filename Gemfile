@@ -32,11 +32,6 @@ gem 'sorcery'
 #Secure tokens
 gem 'has_secure_token'
 
-#Rails aseets
-source 'https://rails-assets.org' do
-  gem 'rails-assets-mouse0270--bootstrap-notify'
-end
-
 # Puma Server
 gem "puma"
 
