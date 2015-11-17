@@ -14,19 +14,19 @@
       = f.text_field :name, class: "form-control", placeholder: "Add Todo"
       = f.submit 'Add Todo', :class => 'btn btn-default'
 
-.row
-  %ul.list-group
-    - @list.todos.each do |todo|
-      %li.list-group-item
-        -if todo.check
-          %span.glyphicon.glyphicon-ok
-        -else
-          %span.glyphicon.glyphicon-remove
-        = todo.name
-        -unless @shared == true
-          = link_to "Delete", todo_path(todo), method: :delete,
-            data: { confirm: 'Are you certain you want to delete this?' },
-            class: "btn btn-default btn-sm pull-right"
-          = link_to "Toggle", toggle_todo_path(todo),
-            method: :post,
-            class: "btn btn-default btn-sm pull-right"
+%br
+%ul.list-group
+  - @list.todos.each do |todo|
+    %li.list-group-item
+      -if todo.check
+        %span.glyphicon.glyphicon-ok
+      -else
+        %span.glyphicon.glyphicon-remove
+      = todo.name
+      -unless @shared == true
+        = link_to "Delete", todo_path(todo), method: :delete,
+          data: { confirm: 'Are you certain you want to delete this?' },
+          class: "btn btn-default btn-sm pull-right"
+        = link_to "Toggle", toggle_todo_path(todo),
+          method: :post,
+          class: "btn btn-default btn-sm pull-right"
