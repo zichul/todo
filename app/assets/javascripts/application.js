@@ -6,7 +6,7 @@
 
 function runAutoRefresh(token) {
   // Connect to Socky Server
-  var socky = new Socky.Client('wss://pacific-mesa-9385.herokuapp.com:80/websocket/todo');
+  var socky = new Socky.Client('ws://pacific-mesa-9385.herokuapp.com:80/websocket/todo');
   
 
   // Subscribe to channel
