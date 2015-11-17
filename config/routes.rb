@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   resources :lists
+  resources :todos, only: [:new, :create, :edit, :update, :destroy]
   get 'shared/:token' => 'lists#shared', as: 'shared'
 
   get 'account' => 'users#show'
