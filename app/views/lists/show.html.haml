@@ -11,7 +11,7 @@
             %li= msg
     .form-horizontal
       = f.text_field :list_id, class: 'hidden' # TODO: fix that
-      = f.text_field :name, class: "form-control", placeholder: "Add Todo"
+      = f.text_field :name, class: "form-control col-md-6", placeholder: "Add Todo"
       = f.submit 'Add Todo', :class => 'btn btn-default'
 
 %br
@@ -30,3 +30,5 @@
         = link_to "Toggle", toggle_todo_path(todo),
           method: :post,
           class: "btn btn-default btn-sm pull-right"
+%br
+= link_to 'Back', root_path, class: "btn btn-default"
