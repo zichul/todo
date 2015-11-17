@@ -1,9 +1,9 @@
 class Todo < ActiveRecord::Base
   belongs_to :list
-  validate :list, presence: true
+  validates :list, presence: true
 
-  def toogle_check
-    self.checked = not self.checked
+  def toggle_check
+    self.check = !self.check
   end
 
 end

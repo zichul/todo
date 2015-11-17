@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :todo do
-    name "MyString"
-list nil
-check false
+    name "Make a sandwich"
+    list {List.any? ? List.first : create( :list )}
+    check false
   end
 
 end

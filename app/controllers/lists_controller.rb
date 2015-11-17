@@ -1,15 +1,26 @@
 class ListsController < ApplicationController
+  before_filter :require_login, except: [:shared]
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    @lists = current_user.lists.all
   end
 
   # GET /lists/1
   # GET /lists/1.json
   def show
+  end
+
+  # GET /shared_list/:token
+  def shared
+    @list = List.find_by_token(params[:token])
+    if @list.present?
+      render :shared
+    else
+      redirect_to root_path, notice: "List not found"
+    end
   end
 
   # GET /lists/new
@@ -28,6 +39,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
+        byebug
         format.html { redirect_to @list, notice: 'List was successfully created.' }
         format.json { render :show, status: :created, location: @list }
       else
@@ -64,11 +76,11 @@ class ListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
-      @list = List.find(params[:id])
+      @list = current_user.lists.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:title, :share_code, :user_id)
+      params.require(:list).permit(:title)
     end
 end

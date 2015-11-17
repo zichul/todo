@@ -4,6 +4,5 @@ class List < ActiveRecord::Base
   belongs_to :user
   has_many :todos
   validates :user, presence: true
-  validates :share_code, presence: true
 
 end
