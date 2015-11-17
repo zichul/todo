@@ -4,29 +4,18 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-
-
-function runAutoRefresh(token, csfr) {
+function runAutoRefresh(token) {
   // Connect to Socky Server
   var socky = new Socky.Client('ws://localhost:3001/websocket/todo');
   
-  // Bind message after connecting to server
-  socky.bind("socky:connection:established", function() {
-    console.log("Connected");
-  });
-  
-  // Bind message after disconnecting from server
-  socky.bind("socky:connection:closed", function() {
-    console.log("Connection closed");
-  });
 
   // Subscribe to channel
   // You can subscribe to as much channels as you want
   // { write:true } option will allow sending messages directly to server
   //   note: this will require enabling this in authenticator
   // { data: { login: username } } all 'data' options are passed to other users
-  var channel = socky.subscribe(token, { write: true });
-  
+  var channel = socky.subscribe("presence-chat-channel", { write: true , data: { } });
+ 
   // Bind message after successfull joining channel
   channel.bind("socky:subscribe:success", function(members) {
     console.log("Joined channel");
@@ -35,16 +24,25 @@ function runAutoRefresh(token, csfr) {
   // Bind function to 'chat_message' event
   // This event can be sent by all clients with 'write' permission
   channel.bind("reload", function(message) {
-    if (message.token == token) {
-      location.reload();
-    }
+    location.reload();
+  });
+};
+
+function updateAutoRefresh(token) {
+  // Connect to Socky Server
+  var socky = new Socky.Client('ws://localhost:3001/websocket/todo');
+
+  var csfr = $('meta[name="csrf-token"]')[0].content
+  var channel = socky.subscribe("presence-chat-channel", { write: true , data: { } });
+  
+  channel.bind("socky:subscribe:success", function(members) {
+    console.log("Joined channel");
   });
   
   // jQuery bind sending message via form to channel event
-  $("#add_todo").submit(function(e) {
+  $("#add_todo").click(function(e) {
     e.preventDefault();
-    channel.trigger("reload", { token: token });
-    $('#message').val('')
+    channel.trigger("reload");
     return false;
   });
 };

@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
   get 'register' => 'users#new', as: 'registration'
-
   root to: 'lists#index'
 
 end

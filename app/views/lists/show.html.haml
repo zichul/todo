@@ -8,12 +8,18 @@
       %ul
         - @todo.errors.full_messages.each do |msg|
           %li= msg
+  %button.btn.btn-default#add_todo(type='submit') Update
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        updateAutoRefresh('#{@list.token}');
+      });
 -else
-  -# - content_for :head do
-  :javascript
-    $(document).ready(function() {
-      runAutoRefresh('#{@list.token}', '#{form_authenticity_token}');
-    });
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        runAutoRefresh('#{@list.token}');
+      });
 
 .row
 %ul.list-group
