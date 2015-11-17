@@ -31,21 +31,21 @@ function runAutoRefresh(token) {
   });
 };
 
-function updateAutoRefresh(token) {
-  // Connect to Socky Server
-  var socky = new Socky.Client('ws://localhost:3001/websocket/todo');
+// function updateAutoRefresh(token) {
+  // // Connect to Socky Server
+  // var socky = new Socky.Client('ws://localhost:3001/websocket/todo');
 
-  var channelString = "presence-".concat(token.substring(0, 6));
-  var channel = socky.subscribe(channelString, { write: true , data: { } });
+  // var channelString = "presence-".concat(token.substring(0, 6));
+  // var channel = socky.subscribe(channelString, { write: true , data: { } });
   
-  channel.bind("socky:subscribe:success", function(members) {
-    console.log("Joined channel");
-  });
+  // channel.bind("socky:subscribe:success", function(members) {
+    // console.log("Joined channel");
+  // });
   
-  // jQuery bind sending message via form to channel event
-  $("#add_todo").click(function(e) {
-    e.preventDefault();
-    channel.trigger("reload");
-    return false;
-  });
-};
+  // // jQuery bind sending message via form to channel event
+  // $("#add_todo").click(function(e) {
+    // e.preventDefault();
+    // channel.trigger("reload");
+    // return false;
+  // });
+// };
