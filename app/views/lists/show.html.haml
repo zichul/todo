@@ -1,0 +1,37 @@
+%h1= @list.title
+
+
+.row
+  -unless @shared == true
+    .input-group
+      = form_for @todo do |f|
+        - if @todo.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@list.errors.count, "error")} prohibited this list from being saved:"
+            %ul
+              - @todo.errors.full_messages.each do |msg|
+                %li= msg
+        %span.input-group-btn
+          = f.submit 'Add Todo', :class => 'btn btn-default'
+        .input
+          = f.text_field :name
+        .input.hidden
+          = f.text_field :list_id
+          -# TODO: fix that
+
+.row
+  %ul.list-group
+    - @list.todos.each do |todo|
+      %li.list-group-item
+        -if todo.check
+          %span.glyphicon.glyphicon-ok
+        -else
+          %span.glyphicon.glyphicon-remove
+        = todo.name
+        -unless @shared == true
+          = link_to "Delete", todo_path(todo), method: :delete,
+            data: { confirm: 'Are you certain you want to delete this?' },
+            class: "btn btn-default btn-sm pull-right"
+          = link_to "Toggle", toggle_todo_path(todo),
+            method: :post,
+            class: "btn btn-default btn-sm pull-right"
