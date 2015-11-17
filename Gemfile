@@ -60,7 +60,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
 
-  gem 'guard-livereload', '~> 3.5.1'
+  gem 'guard-livereload', '~> 2.5.1'
   gem 'guard-rspec'
   gem 'guard-puma'
 end
