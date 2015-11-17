@@ -11,8 +11,11 @@
             %li= msg
     .form-horizontal
       = f.text_field :list_id, class: 'hidden' # TODO: fix that
-      = f.text_field :name, class: "form-control col-md-6", placeholder: "Add Todo"
-      = f.submit 'Add Todo', :class => 'btn btn-default'
+      .row
+        .com-md-6
+          = f.text_field :name, class: "form-control", placeholder: "Add Todo"
+        .com-md-6
+          = f.submit 'Add Todo', :class => 'btn btn-default'
 
 %br
 %ul.list-group
