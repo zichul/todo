@@ -1,3 +1,4 @@
 source :rubygems
+ruby "2.2.3"
 
 gem "socky-server", "0.5.0"

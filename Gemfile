@@ -32,6 +32,10 @@ gem 'sorcery'
 #Secure tokens
 gem 'has_secure_token'
 
+#Rails aseets
+source 'https://rails-assets.org' do
+  gem 'rails-assets-mouse0270--bootstrap-notify'
+end
 
 # Puma Server
 gem "puma"
@@ -40,6 +44,7 @@ gem "puma"
 gem 'sqlite3'
 
 gem 'socky-authenticator', '~> 0.5.0'
+gem 'socky-client', '~> 0.5.0'
 
 group :development, :test do
   # Debugger

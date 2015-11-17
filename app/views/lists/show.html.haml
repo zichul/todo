@@ -8,6 +8,20 @@
       %ul
         - @todo.errors.full_messages.each do |msg|
           %li= msg
+
+  -# %button.btn.btn-default#add_todo(type='submit') Update
+  -# - content_for :head do
+    -# :javascript
+      -# $(document).ready(function() {
+        -# updateAutoRefresh('#{@list.token}');
+      -# });
+-else
+  - content_for :head do
+    :javascript
+      $(document).ready(function() {
+        runAutoRefresh('#{@list.token}');
+      });
+
 .row
 %ul.list-group
   - @list.todos.each do |todo|
@@ -33,4 +47,7 @@
           = f.submit 'Add Todo', :class => 'btn btn-default'
         = f.text_field :name, class: "form-control", placeholder: "Add Todo"
     %br
+    = link_to 'Shared Link', shared_path(@list.token),
+      class: "btn btn-default",
+      :target => "_blank"
     = link_to 'Back', root_path, class: "btn btn-default"
