@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :lists, dependent: :destroy
+
   authenticates_with_sorcery!
   validates :email, :password, presence: true
   validates_confirmation_of :password, message: "should match confirmation", if: :password
