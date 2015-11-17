@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_filter :require_login, except: [:shared]
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :reset_token, :edit, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
@@ -23,6 +23,19 @@ class ListsController < ApplicationController
       render :show
     else
       redirect_to root_path, notice: "List not found"
+    end
+  end
+
+  def reset_token
+    @list.regenerate_token
+    respond_to do |format|
+      if @list.save
+        format.html { redirect_to shared_path(@list.token), notice: 'Shared link has been regenerated' }
+        format.json { render :show, status: :ok, location: @list }
+      else
+        format.html { render :edit }
+        format.json { render json: @list.errors, status: :unprocessable_entity }
+      end
     end
   end
 
