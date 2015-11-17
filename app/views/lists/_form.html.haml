@@ -1,12 +1,13 @@
-= form_for @list do |f|
+= form_for @list, class: "form-horizontal" do |f|
   - if @list.errors.any?
     #error_explanation
       %h2= "#{pluralize(@list.errors.count, "error")} prohibited this list from being saved:"
       %ul
         - @list.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :title
-    = f.text_field :title
-  .actions
-    = f.submit 'Save', class: 'btn btn-default'
+  .form-horizontal
+    .row
+      .col-md-6
+        = f.text_field :title, class: "form-control", placeholder: "Name"
+      .col-md-6
+        = f.submit 'Save', class: 'btn btn-default'
