@@ -17,7 +17,7 @@ RSpec.describe ListsController, type: :controller do
       end
     end
 
-    context "logged in" do
+    context "logged out" do
       it "redirects to login path" do
         list = create_list :list, 5
         get :index
@@ -63,7 +63,7 @@ RSpec.describe ListsController, type: :controller do
       end
     end
 
-    context "logged in" do
+    context "logged out" do
       it "assigns the requested list as @list" do
         list = create :list
         get :shared, :token => list.token
@@ -72,6 +72,31 @@ RSpec.describe ListsController, type: :controller do
     end
   end
 
+  describe "POST #reset_token" do ####################################################
+    context "logged in" do
+      before :each do
+        @user = create :user
+        login_user(@user)
+      end
+
+      it "resets token" do
+        list = create :list
+        first_token = list.token
+        post :reset_token, :id => list.id
+        list.reload
+        expect(list.token).to_not eql(first_token)
+      end
+    end
+
+    context "logged out" do
+      it "redirects to login path" do
+        list = create :list
+        first_token = list.token
+        post :reset_token, :id => list.id
+        expect(response).to redirect_to login_path
+      end
+    end
+  end
   describe "GET #new" do ####################################################
     context "logged in" do
       before :each do
@@ -120,7 +145,6 @@ RSpec.describe ListsController, type: :controller do
   end
 
   describe "POST #create" do #################################################
-
     context "with valid params" do
       before :each do
         @user = create :user

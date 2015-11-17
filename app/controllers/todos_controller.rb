@@ -19,7 +19,13 @@ class TodosController < ApplicationController
   # POST /todos.json
   def create
     @todo = Todo.new(todo_params)
-    @todo.list = List.find(params[:todo][:list_id])
+    if params[:todo][:list_id].present?
+      @todo.list = List.find(params[:todo][:list_id])
+    elsif params[:todo][:list].present?
+      @todo.list = List.find(params[:todo][:list].to_i)
+    else
+      redirect_to root_path, notice: 'Error while adding new todo.'
+    end
 
     respond_to do |format|
       if @todo.save

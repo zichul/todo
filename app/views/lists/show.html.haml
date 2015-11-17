@@ -1,22 +1,14 @@
-%h1= @list.title
+%h1 List title: #{@list.title} 
 
 
 -unless @shared == true
-  = form_for @todo, class: "form-horizontal"  do |f|
-    - if @todo.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@list.errors.count, "error")} prohibited this list from being saved:"
-        %ul
-          - @todo.errors.full_messages.each do |msg|
-            %li= msg
-    .row
-      .com-md-6
-        = f.text_field :list_id, class: 'hidden' # TODO: fix that
-        = f.text_field :name, class: "form-control", placeholder: "Add Todo"
-      .com-md-6
-        = f.submit 'Add Todo', :class => 'btn btn-default'
-
-%br
+  - if @todo.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@list.errors.count, "error")} prohibited this list from being saved:"
+      %ul
+        - @todo.errors.full_messages.each do |msg|
+          %li= msg
+.row
 %ul.list-group
   - @list.todos.each do |todo|
     %li.list-group-item
@@ -32,5 +24,13 @@
         = link_to "Toggle", toggle_todo_path(todo),
           method: :post,
           class: "btn btn-default btn-sm pull-right"
-%br
-= link_to 'Back', root_path, class: "btn btn-default"
+  %br
+  -unless @shared == true
+    = form_for @todo, class: "form-control"  do |f|
+      = f.text_field :list_id, class: 'hidden' # TODO: fix that
+      .input-group
+        %span.input-group-btn
+          = f.submit 'Add Todo', :class => 'btn btn-default'
+        = f.text_field :name, class: "form-control", placeholder: "Add Todo"
+    %br
+    = link_to 'Back', root_path, class: "btn btn-default"
