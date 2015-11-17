@@ -3,21 +3,21 @@
 
 .row
   -unless @shared == true
-    .input-group
-      = form_for @todo do |f|
-        - if @todo.errors.any?
-          #error_explanation
-            %h2= "#{pluralize(@list.errors.count, "error")} prohibited this list from being saved:"
-            %ul
-              - @todo.errors.full_messages.each do |msg|
-                %li= msg
-        %span.input-group-btn
-          = f.submit 'Add Todo', :class => 'btn btn-default'
-        .input
-          = f.text_field :name
-        .input.hidden
-          = f.text_field :list_id
-          -# TODO: fix that
+    = form_for @todo, class: "form-horizontal"  do |f|
+      - if @todo.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@list.errors.count, "error")} prohibited this list from being saved:"
+          %ul
+            - @todo.errors.full_messages.each do |msg|
+              %li= msg
+      %span.input-group-btn
+        = f.submit 'Add Todo', :class => 'btn btn-default'
+      .input
+        = f.label :title, class: "form-label"
+        = f.text_field :name, class: "form-control"
+      .input.hidden
+        = f.text_field :list_id
+        -# TODO: fix that
 
 .row
   %ul.list-group
