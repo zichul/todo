@@ -8,6 +8,13 @@
       %ul
         - @todo.errors.full_messages.each do |msg|
           %li= msg
+-else
+  -# - content_for :head do
+  :javascript
+    $(document).ready(function() {
+      runAutoRefresh('#{@list.token}', '#{form_authenticity_token}');
+    });
+
 .row
 %ul.list-group
   - @list.todos.each do |todo|
