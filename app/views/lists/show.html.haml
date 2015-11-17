@@ -10,14 +10,10 @@
           %ul
             - @todo.errors.full_messages.each do |msg|
               %li= msg
-      %span.input-group-btn
-        = f.submit 'Add Todo', :class => 'btn btn-default'
-      .input
-        = f.label :title, class: "form-label"
+      .form-group
+        = f.text_field :list_id, class: 'hidden' # TODO: fix that
         = f.text_field :name, class: "form-control"
-      .input.hidden
-        = f.text_field :list_id
-        -# TODO: fix that
+        = f.submit 'Add Todo', :class => 'btn btn-default'
 
 .row
   %ul.list-group
