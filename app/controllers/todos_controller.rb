@@ -1,12 +1,25 @@
 class TodosController < ApplicationController
   before_filter :require_login
-  before_action :set_todo, only: [:edit, :update, :destroy]
+  before_action :set_todo, only: [:toggle, :edit, :update, :destroy]
 
+  def toggle
+    @todo.toggle_check
+    respond_to do |format|
+      if @todo.save
+        format.html { redirect_to @todo.list, notice: 'Todo was successfully updated.' }
+        format.json { render :show, status: :ok, location: @todo }
+      else
+        format.html { redirect_to @todo.list }
+        format.json { render json: @todo.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
   # POST /todos
   # POST /todos.json
   def create
     @todo = Todo.new(todo_params)
-    @todo.list = List.find(params[:todo][:list])
+    @todo.list = List.find(params[:todo][:list_id])
 
     respond_to do |format|
       if @todo.save

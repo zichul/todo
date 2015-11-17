@@ -11,13 +11,16 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @todo = Todo.new()
+    @todo.list = @list
   end
 
   # GET /shared_list/:token
   def shared
     @list = List.find_by_token(params[:token])
+    @shared = true
     if @list.present?
-      render :shared
+      render :show
     else
       redirect_to root_path, notice: "List not found"
     end
