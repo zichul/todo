@@ -1,28 +1,21 @@
-== README
+== ToDo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== Treść zadania
 
-Things you may want to cover:
+Stwórz proszę prostą aplikacje TO-Do.
+Użytkownik takiej aplikacji może:
+zarejstrować się/zalogować się
+stworzyć nową / edytować / usuwać  listę
+dodawać / usuwać elementy do listy
+zaznaczać 'zrobione' elmenty na liście.
+Wszystkie te rzeczy użytkownik może robić po zalogowaniu. Powinienteż
+mieć link do listy który jest publiczny (można tylko zobaczyć nazwę
+listy i taski na niej) który może wysłać swoim znajomym. Ten publiczny
+widok powinien się akutalizować live (wykorzystaj do tego gem
+https://github.com/socky/socky-server-ruby)
 
-* Ruby version
+Gotową apkę wrzuć na githuba do publicznego repo i odpal na heroku.com
 
-* System dependencies
+=== Rozwiązanie
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+https://arcane-meadow-7478.herokuapp.com/register
